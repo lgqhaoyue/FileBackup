@@ -8,3 +8,7 @@ how to use this plugin
 2、select one project,right click,you can see "SyncFiles" button group,there are two buttons.<p>
 3、select one project,right click,Properties -> SyncFile Config,you can input the root backup folders of this project.<p>
 4、ofcourse,you can modify short key with 'ctrl S' for ‘save and sync dirty editors' button. I'm used to using Ctrl + s to save and Sync files,So I can compile my source code on linux machine when developing  on windows immediately.
+
+<p>
+  warning
+  eclipse should after lua 4.4.2
