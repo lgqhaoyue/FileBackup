@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="Sync Cmd Category"
+            id="save.sync.commands.category">
+      </category>
+      <command
+            name="Save and Sync dirty editors"
+            categoryId="save.sync.commands.category"
+            id="save.sync.commands.saveSyncDirtyEditors">
+      </command>
+   </extension>
+   
+  
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="save.sync.commands.saveSyncDirtyEditors"
+            class="save.sync.handlers.SaveSyncDirtyEditorsHandler">
+      </handler>
+      
+   </extension>
+   
+   
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="save.sync.commands.saveSyncDirtyEditors"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+3"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+      
+   </extension>
+   
+   
+   <!-- 上下文菜单 -->
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IResource"
+             adaptable="true"
+            id="save.sync.contribution1">
+         <menu
+               label="SyncFiles"
+               path="additions"
+               id="save.sync.menu">
+            <separator
+                  name="group">
+            </separator>
+         </menu>
+         
+         <!-- 保存正在编辑的文件 -->
+         <action
+               label="Save and Sync dirtyEditors"
+               class="save.sync.popup.actions.SaveSyncDirtyEditorsAction"
+               menubarPath="save.sync.menu/group"
+               enablesFor="1"
+               definitionId="save.sync.commands.saveSyncDirtyEditors"
+               id="save.sync.pop.save.sync.dirtyEditors">
+         </action>
+         
+         <!-- 保存所有文件 -->
+          <action
+               label="Save and Sync all files"
+               class="save.sync.popup.actions.SyncAllFilesAction"
+               menubarPath="save.sync.menu/group"
+               enablesFor="1"
+               id="save.sync.pop.save.sync.allFiles">
+         </action>
+         
+      </objectContribution>
+   </extension>
+   
+   <extension point="org.eclipse.ui.propertyPages">
+	<page objectClass="org.eclipse.core.resources.IResource"
+		adaptable="true" name="SyncFile config"
+		class="save.sync.properties.SyncFilesPropertyPage"
+		id="save.sync.properties.SyncFilesPropertyPage">
+	</page>
+</extension>
+
+</plugin>
